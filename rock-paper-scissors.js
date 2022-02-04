@@ -46,6 +46,8 @@ function game() {
         playerScore = 0
         computerScore = 0
         roundNumber = 0
+        elPlayerScore.textContent = playerScore
+        elComputerScore.textContent = computerScore
       }
       
       switch (playRound(playerSelection, computerSelection)) {
