@@ -1,16 +1,8 @@
-function getPlayerInput() {
-  let playerInput = prompt('Please Write your choice here:').trim()
-  const pInputFirstLetter = playerInput.charAt(0).toUpperCase()
-  const pInputRestOfLetters = playerInput.slice(1).toLowerCase()
-  playerInput = pInputFirstLetter + pInputRestOfLetters
-
-  if (playerInput !== 'Rock' && playerInput !== 'Paper' && playerInput !== 'Scissors') {
-    console.log(`${playerInput} is not valid, Please enter a valid choice!`)
-    return getPlayerInput()
-  } else {
-    return playerInput
-  }
-}
+const elPlayButtons = document.querySelectorAll('.play-button')
+const elRoundResult = document.querySelector('.round-result')
+const elRoundNumber = document.querySelector('#round-number')
+const elPlayerScore = document.querySelector('#player-score')
+const elComputerScore = document.querySelector('#computer-score')
 
 function computerPlay() {
   const randomNum = Math.floor(Math.random() * 3)
@@ -39,28 +31,42 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+  // Initial State
   let playerScore = 0
   let computerScore = 0
+  let roundNumber = 0
 
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = getPlayerInput()
-    let computerSelection = computerPlay()
-
-    switch (playRound(playerSelection, computerSelection)) {
-      case 'playerWin':
-        playerScore++
-        console.log(`You Win! ${playerSelection} beats ${computerSelection.toLowerCase()}`)
-        break
-      case 'computerWin':
-        computerScore++
-        console.log(`You Lose! ${computerSelection} beats ${playerSelection.toLowerCase()}`)
-        break
-      case 'tie':
-        console.log(`That's a tie! You both picked ${playerSelection.toLowerCase()}`)
-    }
-
-    console.log(`You: ${playerScore} Computer: ${computerScore}`)
-  }
+  elPlayButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const playerSelection = button.getAttribute('id')
+      const computerSelection = computerPlay()
+      
+      // Reset after 5 rounds
+      if (roundNumber === 5) {
+        playerScore = 0
+        computerScore = 0
+        roundNumber = 0
+      }
+      
+      switch (playRound(playerSelection, computerSelection)) {
+        case 'playerWin':
+          playerScore++
+          elRoundResult.textContent = `You Win! ${playerSelection} beats ${computerSelection}`
+          elPlayerScore.textContent = playerScore
+          break
+        case 'computerWin':
+          computerScore++
+          elRoundResult.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
+          elComputerScore.textContent = computerScore
+          break
+        case 'tie':
+          elRoundResult.textContent = `That's a tie! You both picked ${playerSelection}`
+      }
+      
+      roundNumber++
+      elRoundNumber.textContent = roundNumber
+    })
+  })
 }
 
 game()

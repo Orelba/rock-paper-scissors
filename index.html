@@ -6,10 +6,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="rock-paper-scissors.js" defer></script>
 </head>
 
 <body>
-  <script src="rock-paper-scissors.js"></script>
+  <header>
+    <h1 id="logo">Rock, Paper, Scissors</h1>
+  </header>
+  
+  <main>
+    <h2 id="choice">Make Your Choice</h2>
+
+    <div id="play-buttons" class="buttons">
+      <div id="Rock" class="btn play-button">
+        <img src="images/rock.png" alt="Rock" height="120" width="80">
+        Rock
+      </div>
+      <div id="Paper" class="btn play-button">
+        <img src="images/paper-2.png" alt="Paper" height="120">
+        Paper
+      </div>
+      <div id="Scissors" class="btn play-button">
+        <img src="images/scissors.png" alt="Scissors" height="120">
+        Scissors
+      </div>
+    </div>
+    
+    <h2 class="round-result"></h2>
+
+    <div class="score-content">
+      <h2 class="score-label">Score</h2>
+      <h3 class="round">Round <span id="round-number">0</span></h3>
+      <div class="score-results">
+        <h3 class="score">You: <span id="player-score">0</span></h3>
+        <h3 class="score">Dark Force: <span id="computer-score">0</span></h3>
+      </div> 
+    </div>
+  </main>
+  
+  <footer>
+    <p>Made by Orel Barzilay</p>
+  </footer>
 </body>
 
 </html>

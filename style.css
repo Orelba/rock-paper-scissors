@@ -1,0 +1,130 @@
+@font-face {
+  font-family: 'android_assassinitalic';
+  src: url('fonts/androidassassinitalic-eddp-webfont.woff2') format('woff2'),
+       url('fonts/androidassassinitalic-eddp-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'android_assassinitalic', Roboto, sans-serif;
+  letter-spacing: 2px;
+  color: white;
+  background-image: url(images/galaxy-background.jpg);
+  background-color: black;
+  margin: 0;
+}
+
+header {
+  margin-bottom: auto;
+}
+
+#logo {
+  font-size: 40px;
+  text-shadow: 2px 2px rgb(209, 50, 50);
+  text-align: center;
+  margin: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+
+#choice {
+  font-size: 35px;
+  text-shadow: 0 0 1rem rgb(199, 182, 31);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 170px;
+  width: 170px;
+  border: 5px solid white;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  transition: .07s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 .3rem rgb(255, 255, 255);
+}
+
+img {
+  filter: drop-shadow(0 0 7px crimson);
+  z-index: -1;
+}
+
+.round-result {
+  margin: 30px 0 0;
+  filter: drop-shadow(0 0 7px crimson);
+}
+
+.score-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  text-shadow: 0 0 1rem rgb(31, 62, 199);
+}
+
+.score-label {
+  font-size: 35px;
+  margin: 20px 0;
+  border-bottom: 3px solid white;
+  line-height: .95em;
+}
+
+.round {
+  margin: 0 0 13px;
+  font-size: 30px;
+}
+
+.score-results {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.score-results .score {
+  margin: 0;
+  font-size: 25px;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 581px) {
+  .score-content {
+    margin-top: 25px;
+  }
+}
