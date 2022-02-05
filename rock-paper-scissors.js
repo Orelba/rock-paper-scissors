@@ -1,8 +1,17 @@
+// UI Elements
 const elPlayButtons = document.querySelectorAll('.play-button')
 const elRoundResult = document.querySelector('.round-result')
 const elRoundNumber = document.querySelector('#round-number')
 const elPlayerScore = document.querySelector('#player-score')
 const elComputerScore = document.querySelector('#computer-score')
+const elBody = document.querySelector('body')
+const elGameOverHeading = document.querySelector('.game-over-heading')
+const elResetBtn = document.querySelector('.reset-btn')
+
+// Initialize Game State
+let playerScore = 0
+let computerScore = 0
+let roundNumber = 1
 
 function computerPlay() {
   const randomNum = Math.floor(Math.random() * 3)
@@ -30,26 +39,47 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  // Initial State
-  let playerScore = 0
-  let computerScore = 0
-  let roundNumber = 0
+function showResetOverlay() {
+  elBody.classList.toggle('game-over')
+  elGameOverHeading.classList.toggle('hide')
+  elResetBtn.classList.toggle('hide')
 
+  elResetBtn.addEventListener('click', resetGame)
+}
+
+function resetGame() {
+  playerScore = 0
+  computerScore = 0
+  roundNumber = 1
+
+  elPlayerScore.textContent = playerScore
+  elComputerScore.textContent = computerScore
+  elRoundNumber.textContent = roundNumber
+
+  elGameOverHeading.classList.toggle('hide')
+  elResetBtn.classList.toggle('hide')
+  elBody.classList.toggle('game-over')
+
+  elResetBtn.removeEventListener('click', resetGame)
+}
+
+function setOverlayHeading() {
+  if (playerScore > computerScore) {
+    return 'Game Over, You Win!'
+  } else if (playerScore < computerScore) {
+    return 'Game Over, You Lose!'
+  } else {
+    return "Game Over, It's a Tie!"
+  }
+}
+
+function game() {
   elPlayButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const playerSelection = button.getAttribute('id')
       const computerSelection = computerPlay()
-      
-      // Reset after 5 rounds
-      if (roundNumber === 5) {
-        playerScore = 0
-        computerScore = 0
-        roundNumber = 0
-        elPlayerScore.textContent = playerScore
-        elComputerScore.textContent = computerScore
-      }
-      
+
+      // Play Round, Update Score and Show Round Result
       switch (playRound(playerSelection, computerSelection)) {
         case 'playerWin':
           playerScore++
@@ -64,9 +94,15 @@ function game() {
         case 'tie':
           elRoundResult.textContent = `That's a tie! You both picked ${playerSelection}`
       }
-      
-      roundNumber++
-      elRoundNumber.textContent = roundNumber
+
+      // Reset After 5 Rounds, Else Continue Counting Rounds
+      if (roundNumber === 5) {
+        showResetOverlay()
+        elGameOverHeading.textContent = setOverlayHeading()
+      } else {
+        roundNumber++
+        elRoundNumber.textContent = roundNumber
+      }
     })
   })
 }
