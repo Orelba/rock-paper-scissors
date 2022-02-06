@@ -1,3 +1,5 @@
-# rock-paper-scissors
-A simple rock paper scissors game!  
-Currently outputs to console, GUI will be added soon!
+# Rock, Paper, Scissors
+A Vanilla JS, CSS, HTML Web Game of Rock, Paper, Scissors.  
+  
+Developed By Orel Barzilay For "The Odin Project" Curriculum.  
+Works On Mobile And Desktop.
