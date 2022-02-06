@@ -47,13 +47,18 @@
   </main>
 
   <footer>
-    <p>Made by Orel Barzilay</p>
+    <p>Created by Orel Barzilay</p>
+    <a href="https://github.com/Orelba/rock-paper-scissors"><img src="images/GitHub-Mark-Light-32px.png" alt="Github Icon"></a>
   </footer>
 
   <div class="overlay-screen">
-    <div class="game-over-modal">
-      <h1 class="game-over-heading hide"></h1>
-      <button class="reset-btn hide">Start Over!</button>
+    <div class="game-over-modal hide">
+      <h1 class="game-over-heading"></h1>
+      <button class="reset-btn">Start Over!</button>
+      <div class="game-over-score-results">
+        <h3 class="game-over-score">You: <span id="game-over-player-score">0</span></h3>
+        <h3 class="game-over-score">Dark Force: <span id="game-over-computer-score">0</span></h3>
+      </div>
     </div>
   </div>
 </body>

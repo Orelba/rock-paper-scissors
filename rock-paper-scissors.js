@@ -1,11 +1,14 @@
 // UI Elements
+const elBody = document.querySelector('body')
 const elPlayButtons = document.querySelectorAll('.play-button')
 const elRoundResult = document.querySelector('.round-result')
 const elRoundNumber = document.querySelector('#round-number')
 const elPlayerScore = document.querySelector('#player-score')
 const elComputerScore = document.querySelector('#computer-score')
-const elBody = document.querySelector('body')
+const elGameOverModal = document.querySelector('.game-over-modal')
 const elGameOverHeading = document.querySelector('.game-over-heading')
+const elGameOverPlayerScore = document.querySelector('#game-over-player-score')
+const elGameOverComputerScore = document.querySelector('#game-over-computer-score')
 const elResetBtn = document.querySelector('.reset-btn')
 
 // Initialize Game State
@@ -41,8 +44,9 @@ function playRound(playerSelection, computerSelection) {
 
 function showResetOverlay() {
   elBody.classList.toggle('game-over')
-  elGameOverHeading.classList.toggle('hide')
-  elResetBtn.classList.toggle('hide')
+  elGameOverModal.classList.toggle('hide')
+  elGameOverPlayerScore.textContent = playerScore
+  elGameOverComputerScore.textContent = computerScore
 
   elResetBtn.addEventListener('click', resetGame)
 }
@@ -52,12 +56,12 @@ function resetGame() {
   computerScore = 0
   roundNumber = 1
 
+  elRoundResult.textContent = ''
   elPlayerScore.textContent = playerScore
   elComputerScore.textContent = computerScore
   elRoundNumber.textContent = roundNumber
 
-  elGameOverHeading.classList.toggle('hide')
-  elResetBtn.classList.toggle('hide')
+  elGameOverModal.classList.toggle('hide')
   elBody.classList.toggle('game-over')
 
   elResetBtn.removeEventListener('click', resetGame)
